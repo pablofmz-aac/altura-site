@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altura Athletics — Endurance. Connection. Transformation.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1d4f;
+    --navy-light: #1a2e6e;
+    --orange: #e8722a;
+    --green: #2d7a45;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --gold: #c9a84c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    background: #0f1d4f !important;
+  }
+
+  body {
+    background: #0f1d4f !important;
+    background-color: #0f1d4f !important;
+    color: #ffffff;
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── MOUNTAIN BACKGROUND ─── */
+  .mountain-bg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55vh;
+    z-index: 0;
+    opacity: 0.13;
+    pointer-events: none;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: #0f1d4f;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* ─── GRADIENT MESH ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -30%;
+    right: -20%;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46, 122, 69, 0.12) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ─── LAYOUT ─── */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    text-align: center;
+    padding: 52px 0 36px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .logo-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* SVG logo built from brand colors */
+  .logo-svg {
+    width: 130px;
+    filter: drop-shadow(0 8px 24px rgba(232, 114, 42, 0.25));
+  }
+
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 0.12em;
+    color: #ffffff;
+    line-height: 1;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  .brand-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+  }
+
+  .tagline {
+    margin-top: 18px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: rgba(0,0,0,0.3);
+    padding: 6px 18px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  .tagline .t1 { color: #f08240; }
+  .tagline .t2 { color: #4aad6a; }
+  .tagline .t3 { color: rgba(255,255,255,0.92); }
+
+  /* ─── EVENT BADGE ─── */
+  .event-card {
+    background: linear-gradient(135deg, rgba(232,114,42,0.15), rgba(232,114,42,0.06));
+    border: 1px solid rgba(232,114,42,0.35);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin: 28px 0 10px;
+    animation: fadeUp 0.8s 0.15s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .event-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(to bottom, var(--orange), var(--green));
+  }
+
+  .event-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .event-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  .event-meta {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .event-meta span {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* ─── COUNTDOWN ─── */
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 20px 0;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+
+  .cd-item {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 14px 6px 10px;
+    text-align: center;
+  }
+
+  .cd-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: #ffffff;
+    line-height: 1;
+    display: block;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+  }
+
+  .cd-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* ─── REGISTER CTA ─── */
+  .register-section {
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+
+  .section-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-left: 2px;
+  }
+
+  /* Toggle button */
+  .cta-toggle {
+    width: 100%;
+    background: linear-gradient(135deg, var(--orange), #c95d1a);
+    border: none;
+    border-radius: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 8px 32px rgba(232,114,42,0.35);
+  }
+
+  .cta-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,114,42,0.45); }
+  .cta-toggle:active { transform: translateY(0); }
+
+  .cta-toggle-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cta-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+
+  .cta-text strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.45rem;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  .cta-text small {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    opacity: 0.85;
+  }
+
+  .cta-arrow {
+    font-size: 1.4rem;
+    transition: transform 0.3s;
+  }
+
+  .cta-arrow.open { transform: rotate(180deg); }
+
+  /* ─── FORM ─── */
+  .form-wrap {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+    opacity: 0;
+  }
+
+  .form-wrap.open {
+    max-height: 900px;
+    opacity: 1;
+  }
+
+  .register-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-row label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .form-row input,
+  .form-row select {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-row input::placeholder { color: rgba(255,255,255,0.25); }
+  .form-row select option { background: #1a2e6e; color: white; }
+
+  .form-row input:focus,
+  .form-row select:focus {
+    border-color: rgba(232,114,42,0.6);
+    background: rgba(255,255,255,0.09);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--green), #1f5a31);
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 6px 24px rgba(45,122,69,0.4);
+    margin-top: 4px;
+  }
+
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(45,122,69,0.5); }
+
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 28px 20px;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .success-msg .check { font-size: 2.5rem; margin-bottom: 12px; }
+
+  .success-msg h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--green);
+    letter-spacing: 0.06em;
+  }
+
+  .success-msg p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 6px;
+  }
+
+  /* ─── LINK BUTTONS ─── */
+  .links-section {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .link-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 14px;
+    padding: 16px 18px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .link-btn:hover {
+    background: rgba(255,255,255,0.13);
+    border-color: rgba(255,255,255,0.25);
+    transform: translateX(4px);
+  }
+
+  .link-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .link-icon.wa { background: rgba(37,211,102,0.18); }
+  .link-icon.ig { background: rgba(225,48,108,0.18); }
+  .link-icon.yt { background: rgba(255,0,0,0.18); }
+  .link-icon.st { background: rgba(252,76,2,0.18); }
+  .link-icon.sp { background: rgba(201,168,76,0.18); }
+
+  .link-info {
+    flex: 1;
+  }
+
+  .link-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  .link-sub {
+    font-size: 0.76rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 1px;
+  }
+
+  .link-arrow {
+    color: rgba(255,255,255,0.25);
+    font-size: 1rem;
+  }
+
+  /* ─── PURPOSE STRIP ─── */
+  .purpose-strip {
+    margin: 28px 0 0;
+    background: rgba(45,122,69,0.1);
+    border: 1px solid rgba(45,122,69,0.25);
+    border-radius: 16px;
+    padding: 22px 20px;
+    animation: fadeUp 0.8s 0.55s ease both;
+  }
+
+  .purpose-strip p {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+  }
+
+  .purpose-strip p strong {
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 20px;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .footer p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 22px 0 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .divider span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- Mountain SVG background -->
+<svg class="mountain-bg" viewBox="0 0 800 300" preserveAspectRatio="xMidYMax meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 300 L120 80 L200 160 L320 20 L420 120 L500 60 L600 150 L700 40 L800 120 L800 300 Z" fill="#e8722a"/>
+  <path d="M0 300 L80 140 L180 200 L280 70 L380 160 L480 30 L580 120 L680 80 L800 170 L800 300 Z" fill="#2d7a45"/>
+  <path d="M0 300 L100 180 L200 120 L350 30 L450 130 L550 50 L650 140 L750 90 L800 180 L800 300 Z" fill="#0f1d4f"/>
+</svg>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo-wrap">
+      <!-- Logo SVG recreated from brand -->
+      <svg class="logo-svg" viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mountain left (navy) -->
+        <polygon points="10,100 55,25 75,55 50,100" fill="#1a2e6e"/>
+        <!-- Mountain left peak snow -->
+        <polygon points="55,25 48,42 62,42" fill="white" opacity="0.9"/>
+        <!-- Mountain right (orange) -->
+        <polygon points="50,100 80,40 100,70 90,100" fill="#e8722a" opacity="0.85"/>
+        <!-- Mountain right (green) -->
+        <polygon points="80,100 105,45 150,100" fill="#2d7a45"/>
+        <!-- Runner silhouette -->
+        <g fill="white" opacity="0.92">
+          <!-- Head -->
+          <circle cx="118" cy="50" r="5.5"/>
+          <!-- Body -->
+          <line x1="118" y1="56" x2="115" y2="72" stroke="white" stroke-width="3" stroke-linecap="round"/>
+          <!-- Arms -->
+          <line x1="115" y1="62" x2="107" y2="57" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="115" y1="62" x2="124" y2="58" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Legs -->
+          <line x1="115" y1="72" x2="108" y2="85" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="115" y1="72" x2="122" y2="83" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </g>
+      </svg>
+
+      <div class="brand-name">ALTURA ATHLETICS</div>
+      <div class="brand-sub">Antigua Guatemala</div>
+
+      <div class="tagline">
+        <span class="t1">Endurance.</span>
+        <span class="t2"> Connection.</span>
+        <span class="t3"> Transformation.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVENT CARD -->
+  <div class="event-card">
+    <div class="event-label">🏁 Lanzamiento oficial</div>
+    <div class="event-title">Mini Carrera &amp; Primer Run</div>
+    <div class="event-meta">
+      <span>📅 24 de mayo, 2025</span>
+      <span>📍 Tacana Climbing Gym</span>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown" id="countdown">
+    <div class="cd-item"><span class="cd-num" id="cd-days">—</span><span class="cd-label">Días</span></div>
+    <div class="cd-item"><span class="cd-num" id="cd-hours">—</span><span class="cd-label">Horas</span></div>
+    <div class="cd-item"><span class="cd-num" id="cd-mins">—</span><span class="cd-label">Mins</span></div>
+    <div class="cd-item"><span class="cd-num" id="cd-secs">—</span><span class="cd-label">Segs</span></div>
+  </div>
+
+  <!-- REGISTER SECTION -->
+  <div class="register-section">
+    <div class="section-header">Registro</div>
+
+    <button class="cta-toggle" id="toggleBtn" onclick="toggleForm()">
+      <div class="cta-toggle-left">
+        <div class="cta-icon">🏃</div>
+        <div class="cta-text">
+          <strong>Regístrate al Lanzamiento</strong>
+          <small>Cupo limitado · Es gratis</small>
+        </div>
+      </div>
+      <div class="cta-arrow" id="cta-arrow">▾</div>
+    </button>
+
+    <div class="form-wrap" id="formWrap">
+      <div class="register-form" id="formContent">
+
+        <div class="form-row">
+          <label>Nombre completo</label>
+          <input type="text" id="f-name" placeholder="Tu nombre">
+        </div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" id="f-email" placeholder="tu@email.com">
+          </div>
+          <div class="form-row">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" id="f-phone" placeholder="+502...">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>¿Corres actualmente?</label>
+          <select id="f-runs">
+            <option value="">Selecciona...</option>
+            <option>Sí, regularmente</option>
+            <option>Ocasionalmente</option>
+            <option>Estoy empezando</option>
+            <option>No, pero quiero empezar</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>¿Cómo te enteraste de Altura?</label>
+          <select id="f-source">
+            <option value="">Selecciona...</option>
+            <option>Instagram</option>
+            <option>Un amigo / conocido</option>
+            <option>WhatsApp</option>
+            <option>Banner / flyer</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <button class="submit-btn" onclick="submitForm()">CONFIRMAR MI LUGAR 🏔</button>
+
+      </div>
+
+      <div class="success-msg" id="successMsg">
+        <div class="check">✅</div>
+        <h3>¡Estás dentro!</h3>
+        <p>Nos vemos el 24 de mayo en<br>Tacana Climbing Gym, Antigua.</p>
+        <p style="margin-top:10px; color: rgba(255,255,255,0.4);">Comparte con quien quieras unirse 👇</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LINKS -->
+  <div class="divider"><span>Comunidad</span></div>
+
+  <div class="links-section">
+
+    <a class="link-btn" href="#" onclick="return false;">
+      <div class="link-icon wa">💬</div>
+      <div class="link-info">
+        <div class="link-title">Grupo de WhatsApp</div>
+        <div class="link-sub">Únete a la comunidad</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <a class="link-btn" href="#" onclick="return false;">
+      <div class="link-icon ig">📸</div>
+      <div class="link-info">
+        <div class="link-title">Instagram</div>
+        <div class="link-sub">@alturaathletics</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <a class="link-btn" href="#" onclick="return false;">
+      <div class="link-icon yt">▶️</div>
+      <div class="link-info">
+        <div class="link-title">¿Quiénes somos?</div>
+        <div class="link-sub">Conoce nuestra historia</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <a class="link-btn" href="#" onclick="return false;">
+      <div class="link-icon st">🏅</div>
+      <div class="link-info">
+        <div class="link-title">Club de Strava</div>
+        <div class="link-sub">Sigue tus runs con la comunidad</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+    <a class="link-btn" href="#" onclick="return false;">
+      <div class="link-icon sp">📄</div>
+      <div class="link-info">
+        <div class="link-title">Info para Sponsors</div>
+        <div class="link-sub">Alianzas y patrocinios</div>
+      </div>
+      <div class="link-arrow">›</div>
+    </a>
+
+  </div>
+
+  <!-- PURPOSE STRIP -->
+  <div class="purpose-strip">
+    <p>
+      Crear una <strong>comunidad inclusiva</strong> que inspire a las personas a transformar sus vidas a través de la <strong>resistencia</strong>, los desafíos compartidos y la <strong>conexión</strong>.
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Altura Athletics · Antigua Guatemala · 2025</p>
+  </div>
+
+</div>
+
+<script>
+  // ─── COUNTDOWN ───
+  function updateCountdown() {
+    const target = new Date('2025-05-24T08:00:00-06:00');
+    const now = new Date();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '0';
+      document.getElementById('cd-hours').textContent = '0';
+      document.getElementById('cd-mins').textContent = '0';
+      document.getElementById('cd-secs').textContent = '0';
+      return;
+    }
+
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000) / 60000);
+    const secs  = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(secs).padStart(2,'0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ─── FORM TOGGLE ───
+  function toggleForm() {
+    const wrap  = document.getElementById('formWrap');
+    const arrow = document.getElementById('cta-arrow');
+    const btn   = document.getElementById('toggleBtn');
+    const open  = wrap.classList.toggle('open');
+    arrow.classList.toggle('open', open);
+    btn.style.borderRadius = open ? '14px 14px 0 0' : '14px';
+  }
+
+  // ─── SUBMIT ───
+  function submitForm() {
+    const name   = document.getElementById('f-name').value.trim();
+    const email  = document.getElementById('f-email').value.trim();
+    const phone  = document.getElementById('f-phone').value.trim();
+    const runs   = document.getElementById('f-runs').value;
+    const source = document.getElementById('f-source').value;
+
+    if (!name || !email) {
+      alert('Por favor ingresa tu nombre y correo para continuar.');
+      return;
+    }
+
+    // Log to console (replace with your backend/Sheets/Mailchimp endpoint)
+    console.log({ name, email, phone, runs, source });
+
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
