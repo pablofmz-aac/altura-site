@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comunidad — Altura Athletics</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* Page Hero */
+    .community-hero {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-height);
+      overflow: hidden;
+      background: var(--green);
+    }
+    .community-hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(125deg, #080f1a 0%, #0C1A2E 50%, #112340 100%);
+    }
+    .community-hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .community-hero .container { position: relative; z-index: 1; padding-top: 60px; padding-bottom: 80px; }
+    .community-hero h1 { color: var(--white); max-width: 680px; }
+    .community-hero p  { color: rgba(255,255,255,0.75); max-width: 460px; font-size: 1.05rem; margin-top: 16px; }
+
+    /* Pillars */
+    .pillars-section { padding: 80px 0; }
+    .pillars-intro   { text-align: center; margin-bottom: 56px; }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .pillar-card {
+      text-align: center;
+      padding: 36px 24px;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--orange);
+      transition: transform var(--transition);
+    }
+    .pillar-card:hover { transform: translateY(-6px); }
+    .pillar-icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .pillar-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .pillar-text  { font-size: 0.88rem; color: var(--gray-600); }
+
+    /* Local+International Banner */
+    .global-banner {
+      background: var(--navy);
+      padding: 80px 0;
+    }
+    .global-banner-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .global-banner h2 { color: var(--white); }
+    .global-banner p  { color: rgba(255,255,255,0.7); margin-top: 14px; }
+    .global-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .global-img .placeholder-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+    }
+
+    /* Weekly training */
+    .training-section { padding: 80px 0; background: var(--off-white); }
+    .training-header  { text-align: center; margin-bottom: 48px; }
+    .weekly-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .weekly-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+      border: 2px solid var(--gray-200);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .weekly-card:hover { border-color: var(--orange); box-shadow: var(--shadow); }
+    .weekly-card.highlight { border-color: var(--orange); background: linear-gradient(160deg, rgba(232,112,26,0.05), white); }
+    .wc-day  { font-family: var(--font-display); font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); }
+    .wc-time { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--orange); margin: 6px 0; }
+    .wc-type { font-weight: 600; font-size: 0.9rem; color: var(--navy); margin-bottom: 4px; }
+    .wc-loc  { font-size: 0.8rem; color: var(--gray-400); }
+
+    /* Join CTA */
+    .join-cta {
+      background: var(--orange);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      text-align: center;
+      color: var(--white);
+    }
+    .join-cta h3 { color: var(--white); margin-bottom: 8px; }
+    .join-cta p  { color: rgba(255,255,255,0.85); margin-bottom: 24px; }
+
+    @media (max-width: 1024px) {
+      .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+      .weekly-grid  { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .global-banner-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .weekly-grid  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <!-- HERO -->
+  <section class="community-hero">
+    <div class="community-hero-bg"></div>
+    <div class="container">
+      <div class="section-label" style="color:var(--orange);">Nuestra Comunidad</div>
+      <h1>Somos una comunidad<br>que va más allá de correr</h1>
+      <p>Entrenamos juntos, nos apoyamos y celebramos cada paso del camino.</p>
+    </div>
+    <!-- Hero photo placeholder: top right -->
+    <div style="position:absolute;top:var(--nav-height);right:0;bottom:0;width:42%;z-index:0;">
+      <div class="placeholder-img" style="width:100%;height:100%;border-radius:0;">
+        <!-- <img src="images/comunidad-hero.jpg" alt="Comunidad"> -->
+        <span>FOTO — Comunidad en Antigua</span>
+      </div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to right, #0C1A2E 0%, transparent 45%);"></div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars-section">
+    <div class="container">
+      <div class="pillars-intro">
+        <div class="section-label" style="justify-content:center;">Nuestra Esencia</div>
+        <h2>Nuestros Valores</h2>
+        <p style="max-width:480px;margin:12px auto 0;color:var(--gray-600);">Los cinco principios que guían cada entrenamiento, cada evento y cada conexión.</p>
+      </div>
+      <div class="pillars-grid" style="grid-template-columns: repeat(5,1fr);">
+        <div class="pillar-card">
+          <div class="pillar-icon">🔄</div>
+          <div class="pillar-title">Consistencia</div>
+          <div class="pillar-text">Siempre presentes, incluso en los días difíciles.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🤝</div>
+          <div class="pillar-title">Comunidad</div>
+          <div class="pillar-text">Entrenamos juntos y avanzamos juntos.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">⚡</div>
+          <div class="pillar-title">Desafío</div>
+          <div class="pillar-text">Superamos límites y disfrutamos el camino.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🌍</div>
+          <div class="pillar-title">Inclusión</div>
+          <div class="pillar-text">Todos tienen un lugar. Cada nivel importa.</div>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">📈</div>
+          <div class="pillar-title">Crecimiento</div>
+          <div class="pillar-text">Crecemos física y mentalmente, paso a paso.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO QUOTE STRIP -->
+  <section style="background:var(--orange);padding:56px 0;text-align:center;">
+    <div class="container">
+      <p style="font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:800;color:var(--white);line-height:1.3;max-width:700px;margin:0 auto 12px;">
+        "En Altura, no solo entrenamos.<br>Nos construimos unos a otros."
+      </p>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Manifiesto Altura Athletics</p>
+      <a href="sobre-altura.html" class="btn" style="margin-top:24px;background:var(--white);color:var(--orange);font-weight:700;">Leer el Manifiesto completo →</a>
+    </div>
+  </section>
+
+  <!-- GLOBAL -->
+  <section class="global-banner">
+    <div class="container">
+      <div class="global-banner-grid">
+        <div>
+          <div class="section-label" style="color:var(--orange);">Local + Internacional</div>
+          <h2>Nuestra comunidad es local e internacional.</h2>
+          <p>Personas de Guatemala y de todo el mundo entrenando y creando recuerdos en Antigua.</p>
+          <div class="stats-row" style="margin-top:32px;">
+            <div class="stat-item">
+              <div class="stat-number">38</div>
+              <div class="stat-label">Miembros activos</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Países</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">2024</div>
+              <div class="stat-label">Año de fundación</div>
+            </div>
+          </div>
+        </div>
+        <div class="global-img">
+          <div class="placeholder-img" style="width:100%;aspect-ratio:4/3;border-radius:var(--radius-lg);">
+            <!-- <img src="images/global-community.jpg" alt="Comunidad internacional"> -->
+            <span>FOTO — Grupo Internacional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEEKLY TRAINING -->
+  <section class="training-section">
+    <div class="container">
+      <div class="training-header">
+        <div class="section-label" style="justify-content:center;">Rutina Semanal</div>
+        <h2>Entrenos Semanales</h2>
+        <p style="max-width:420px;margin:12px auto 0;color:var(--gray-600);">Únete cuando puedas. Siempre hay un grupo esperándote.</p>
+      </div>
+      <div class="weekly-grid">
+        <div class="weekly-card">
+          <div class="wc-day">Martes</div>
+          <div class="wc-time">6:00 AM</div>
+          <div class="wc-type">Rodaje base</div>
+          <div class="wc-loc">📍 Parque Central</div>
+        </div>
+        <div class="weekly-card">
+          <div class="wc-day">Jueves</div>
+          <div class="wc-time">6:00 AM</div>
+          <div class="wc-type">Series / Intervalos</div>
+          <div class="wc-loc">📍 Pista o ruta</div>
+        </div>
+        <div class="weekly-card highlight">
+          <div class="wc-day">Sábado</div>
+          <div class="wc-time">7:00 AM</div>
+          <div class="wc-type">Largo en grupo</div>
+          <div class="wc-loc">📍 Ruta larga</div>
+        </div>
+        <div class="weekly-card">
+          <div class="wc-day">Domingo</div>
+          <div class="wc-time">7:00 AM</div>
+          <div class="wc-type">Recuperación activa</div>
+          <div class="wc-loc">Opcional</div>
+        </div>
+      </div>
+      <div class="join-cta">
+        <h3>¡Listo para unirte?</h3>
+        <p>Te esperamos en nuestro próximo entreno.</p>
+        <a href="miembros.html" class="btn" style="background:var(--white);color:var(--orange);font-weight:700;">
+          Unirme a la comunidad
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+</body>
+</html>

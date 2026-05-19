@@ -1,0 +1,258 @@
+/* ===========================
+   HOME PAGE CSS
+   =========================== */
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: var(--nav-height);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(12,26,46,0.93) 0%,
+    rgba(12,26,46,0.72) 55%,
+    rgba(12,26,46,0.25) 100%
+  );
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+.hero-text {
+  max-width: 640px;
+}
+.hero-text h1 {
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.hero-text p {
+  color: rgba(255,255,255,0.8);
+  font-size: 1.1rem;
+  max-width: 440px;
+  margin-bottom: 32px;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.hero-tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-tags span {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.3; transform: scaleY(0.5); }
+}
+
+/* PURPOSE */
+.purpose-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+.purpose-text h2 { margin-bottom: 20px; }
+.purpose-text p { color: var(--gray-600); }
+.purpose-image {
+  position: relative;
+}
+.purpose-pillars {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+.pillar {
+  flex: 1;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+/* FOUNDING */
+.founding-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.progress-section { margin-top: 28px; }
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 8px;
+}
+.progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--orange);
+  border-radius: 100px;
+  transition: width 1s ease;
+}
+.founding-cta-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(135deg, rgba(26,51,88,0.6) 0%, rgba(17,35,64,0.8) 100%);
+}
+.founding-cta-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+.founding-cta-card h3 { color: var(--white); margin-bottom: 12px; }
+.founding-cta-card p  { color: rgba(255,255,255,0.65); font-size: 0.95rem; }
+
+/* EVENTS PREVIEW */
+.events-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.event-card-home {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.event-card-home:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.event-date-badge {
+  background: var(--navy);
+  color: var(--white);
+  text-align: center;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+.event-day   { font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; line-height:1; }
+.event-month { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; color: var(--orange); }
+.event-year  { font-size: 0.7rem; color: rgba(255,255,255,0.5); }
+.event-img   { display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--gray-400); }
+.event-info  { padding: 20px; flex: 1; }
+.event-info h4 { margin: 8px 0 6px; font-size: 1rem; }
+.event-info p  { font-size: 0.85rem; color: var(--gray-600); }
+
+/* TRAINING WEEK */
+.training-week-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.training-day {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  border: 2px solid var(--gray-200);
+  transition: border-color var(--transition);
+  text-align: center;
+}
+.training-day:hover { border-color: var(--orange); }
+.training-day--highlight {
+  border-color: var(--orange);
+  background: linear-gradient(135deg, rgba(232,112,26,0.05) 0%, white 100%);
+}
+.day-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.day-time {
+  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--orange);
+  margin: 6px 0;
+}
+.day-type { font-size: 0.9rem; font-weight: 600; color: var(--text-body); margin-bottom: 6px; }
+.day-location { font-size: 0.82rem; color: var(--gray-400); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .events-preview-grid { grid-template-columns: 1fr 1fr; }
+  .training-week-grid  { grid-template-columns: 1fr 1fr; }
+  .purpose-grid        { gap: 40px; }
+  .founding-grid       { gap: 40px; }
+}
+@media (max-width: 768px) {
+  .purpose-grid   { grid-template-columns: 1fr; }
+  .founding-grid  { grid-template-columns: 1fr; }
+  .events-preview-grid { grid-template-columns: 1fr; }
+  .training-week-grid  { grid-template-columns: 1fr 1fr; }
+  .hero-actions { flex-direction: column; }
+  .hero-text h1 { font-size: 2.6rem; }
+}
+@media (max-width: 480px) {
+  .training-week-grid { grid-template-columns: 1fr; }
+  .purpose-pillars { flex-direction: column; }
+}

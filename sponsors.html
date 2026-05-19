@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patrocinadores — Altura Athletics</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .page-header-simple {
+      background: linear-gradient(135deg, #080f1a 0%, var(--navy-mid) 100%);
+      padding: calc(var(--nav-height) + 48px) 0 56px;
+    }
+    .page-header-simple h1 { color: var(--white); }
+    .page-header-simple p  { color: rgba(255,255,255,0.65); margin-top: 10px; max-width: 500px; }
+
+    /* Sponsor tiers */
+    .sponsors-section { padding: 80px 0; }
+    .sponsor-tier { margin-bottom: 72px; }
+    .sponsor-tier:last-child { margin-bottom: 0; }
+
+    .tier-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--gray-200);
+    }
+    .tier-label {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      background: var(--gray-100);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .tier-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    /* Logo grid */
+    .logos-grid-main {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .logos-grid-allies {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .logos-grid-collab {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .sponsor-logo-card {
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .sponsor-logo-card:hover { border-color: var(--orange); box-shadow: var(--shadow); }
+
+    .sponsor-logo-card--sm { padding: 24px 16px; }
+
+    .sponsor-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .sponsor-logo-card--sm .sponsor-name { font-size: 1.2rem; }
+
+    /* CTA */
+    .sponsor-page-cta {
+      background: linear-gradient(135deg, #080f1a 0%, #0C1A2E 100%);
+      padding: 80px 0;
+    }
+    .sponsor-page-cta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .sponsor-page-cta h2 { color: var(--white); }
+    .sponsor-page-cta p  { color: rgba(255,255,255,0.65); margin-top: 12px; }
+    .sponsor-cta-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+    .sponsor-cta-card h3 { color: var(--white); margin-bottom: 12px; }
+    .sponsor-cta-card p  { color: rgba(255,255,255,0.6); font-size: 0.92rem; margin-bottom: 20px; }
+
+    @media (max-width: 1024px) {
+      .logos-grid-main   { grid-template-columns: repeat(2, 1fr); }
+      .logos-grid-allies { grid-template-columns: repeat(2, 1fr); }
+      .logos-grid-collab { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .sponsor-page-cta-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .logos-grid-main   { grid-template-columns: repeat(2, 1fr); }
+      .tier-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <section class="page-header-simple">
+    <div class="container">
+      <div class="section-label" style="color:var(--orange);">Patrocinadores & Partners</div>
+      <h1>Marcas que creen en Altura</h1>
+      <p>Gracias a nuestros aliados estratégicos por impulsar nuestra comunidad y hacer posible cada experiencia.</p>
+    </div>
+  </section>
+
+  <section class="sponsors-section">
+    <div class="container">
+
+      <!-- PRINCIPALES -->
+      <div class="sponsor-tier">
+        <div class="tier-header">
+          <span class="tier-label">Tier 1</span>
+          <span class="tier-title">Patrocinadores Principales</span>
+        </div>
+        <div class="logos-grid-main">
+          <div class="sponsor-logo-card">
+            <!-- Replace with: <img src="images/logo-nike.svg" alt="Nike" style="max-height:40px;"> -->
+            <span class="sponsor-name">NIKE</span>
+          </div>
+          <div class="sponsor-logo-card">
+            <span class="sponsor-name">GATORADE</span>
+          </div>
+          <div class="sponsor-logo-card">
+            <span class="sponsor-name">BAC</span>
+          </div>
+          <div class="sponsor-logo-card">
+            <span class="sponsor-name" style="font-size:1.3rem;">POWERADE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALIADOS -->
+      <div class="sponsor-tier">
+        <div class="tier-header">
+          <span class="tier-label">Tier 2</span>
+          <span class="tier-title">Aliados</span>
+        </div>
+        <div class="logos-grid-allies">
+          <div class="sponsor-logo-card sponsor-logo-card--sm">
+            <span class="sponsor-name">PUMA</span>
+          </div>
+          <div class="sponsor-logo-card sponsor-logo-card--sm">
+            <span class="sponsor-name">ASICS</span>
+          </div>
+          <div class="sponsor-logo-card sponsor-logo-card--sm">
+            <span class="sponsor-name">PITAYA</span>
+          </div>
+          <div class="sponsor-logo-card sponsor-logo-card--sm">
+            <span class="sponsor-name" style="font-size:1rem;">COMELONES</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLABORADORES -->
+      <div class="sponsor-tier">
+        <div class="tier-header">
+          <span class="tier-label">Tier 3</span>
+          <span class="tier-title">Colaboradores</span>
+        </div>
+        <div class="logos-grid-collab">
+          <div class="sponsor-logo-card sponsor-logo-card--sm">
+            <span class="sponsor-name" style="font-size:1rem;">KNOCKOUT</span>
+          </div>
+          <div class="sponsor-logo-card sponsor-logo-card--sm">
+            <div style="text-align:center;">
+              <span class="sponsor-name" style="font-size:0.9rem;display:block;">WELLNESS</span>
+              <span style="font-size:0.75rem;color:var(--gray-400);letter-spacing:0.1em;font-weight:600;">STUDIO</span>
+            </div>
+          </div>
+          <div class="sponsor-logo-card sponsor-logo-card--sm">
+            <div style="text-align:center;">
+              <span class="sponsor-name" style="font-size:0.9rem;display:block;">FORREST</span>
+              <span style="font-size:0.75rem;color:var(--gray-400);letter-spacing:0.1em;font-weight:600;">RUNNING</span>
+            </div>
+          </div>
+          <div class="sponsor-logo-card sponsor-logo-card--sm">
+            <div style="text-align:center;">
+              <span class="sponsor-name" style="font-size:0.9rem;display:block;">CAOBA</span>
+              <span style="font-size:0.75rem;color:var(--gray-400);letter-spacing:0.1em;font-weight:600;">FARMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sponsor-page-cta" style="background: linear-gradient(135deg, #080f1a 0%, var(--navy-mid) 100%);">
+    <div class="container">
+      <div class="sponsor-page-cta-inner">
+        <div>
+          <div class="section-label" style="color:var(--orange);">Únete</div>
+          <h2>¿Tu marca quiere ser parte?</h2>
+          <p>Construyamos algo increíble juntos. Llega a una comunidad apasionada por el deporte, la salud y el estilo de vida activo en Antigua Guatemala.</p>
+        </div>
+        <div class="sponsor-cta-card">
+          <h3>Conocer oportunidades</h3>
+          <p>Descubre los diferentes niveles de patrocinio y qué incluye cada uno para tu marca.</p>
+          <a href="contacto.html" class="btn btn-primary" style="width:100%;justify-content:center;">Conocer oportunidades</a>
+          <a href="mailto:hola@alturaathletics.com" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:10px;">hola@alturaathletics.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+</body>
+</html>

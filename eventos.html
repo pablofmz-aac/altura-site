@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventos — Altura Athletics</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .page-header-simple {
+      background: var(--navy);
+      padding: calc(var(--nav-height) + 48px) 0 56px;
+    }
+    .page-header-simple h1 { color: var(--white); }
+    .page-header-simple p  { color: rgba(255,255,255,0.65); margin-top: 10px; max-width: 480px; }
+
+    /* Events list */
+    .events-section { padding: 72px 0; }
+    .events-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .event-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 280px;
+      gap: 0;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .event-row:hover { box-shadow: var(--shadow-lg); transform: translateX(4px); }
+
+    .event-row-date {
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 12px;
+      text-align: center;
+    }
+    .event-row-date .day  { font-family: var(--font-display); font-size: 2.8rem; font-weight: 900; color: var(--white); line-height:1; }
+    .event-row-date .month{ font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; color: var(--orange); margin-top: 4px; }
+    .event-row-date .year { font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+
+    .event-row-img {
+      aspect-ratio: unset;
+      min-height: 200px;
+    }
+    .event-row-img .placeholder-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .event-row-info {
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .event-row-info .event-meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .event-row-info h3 { margin-bottom: 10px; }
+    .event-row-info p  { color: var(--gray-600); font-size: 0.92rem; max-width: 480px; }
+    .event-row-info .event-location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--gray-400);
+      margin-top: 10px;
+    }
+
+    .event-row-action {
+      background: var(--off-white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px;
+      gap: 12px;
+      border-left: 1px solid var(--gray-200);
+    }
+    .event-row-action .btn { width: 100%; justify-content: center; }
+
+    /* Sponsor CTA */
+    .sponsor-cta-section {
+      background: var(--green);
+      padding: 72px 0;
+      text-align: center;
+    }
+    .sponsor-cta-section h2 { color: var(--white); margin-bottom: 12px; }
+    .sponsor-cta-section p  { color: rgba(255,255,255,0.7); max-width: 420px; margin: 0 auto 28px; }
+
+    .view-calendar-section { padding: 48px 0; text-align: center; }
+
+    @media (max-width: 1024px) {
+      .event-row { grid-template-columns: 80px 1fr; }
+      .event-row-action { display: none; }
+    }
+    @media (max-width: 640px) {
+      .event-row { grid-template-columns: 70px 1fr; }
+      .event-row-info { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <!-- HEADER -->
+  <section class="page-header-simple">
+    <div class="container">
+      <div class="section-label" style="color:var(--orange);">Calendario</div>
+      <h1>Próximos Eventos</h1>
+      <p>Experiencias que nos retan, nos unen y nos hacen crecer.</p>
+    </div>
+  </section>
+
+  <!-- EVENTS LIST -->
+  <section class="events-section">
+    <div class="container">
+
+      <!-- Event 1 -->
+      <div class="events-list">
+
+        <div class="event-row">
+          <div class="event-row-date">
+            <div class="day">24</div>
+            <div class="month">MAY</div>
+            <div class="year">2026</div>
+          </div>
+          <div class="event-row-img">
+            <div class="placeholder-img" style="height:100%;justify-content:center;align-items:center;display:flex;font-size:0.75rem;">
+              <!-- <img src="images/evento-lanzamiento.jpg" alt="Lanzamiento Oficial"> -->
+              FOTO EVENTO
+            </div>
+          </div>
+          <div class="event-row-info">
+            <div class="event-meta">
+              <span class="badge badge-orange">Exclusivo para miembros</span>
+            </div>
+            <h3>Lanzamiento Oficial Altura Athletics</h3>
+            <p>Evento exclusivo para nuestra comunidad fundadora. Una noche para celebrar el inicio de algo especial.</p>
+            <div class="event-location">📍 Antigua Guatemala</div>
+          </div>
+          <div class="event-row-action">
+            <a href="miembros.html" class="btn btn-primary">Quiero asistir</a>
+            <a href="#" class="btn btn-ghost" style="font-size:0.85rem;">Más información</a>
+          </div>
+        </div>
+
+        <div class="event-row">
+          <div class="event-row-date">
+            <div class="day">14</div>
+            <div class="month">JUN</div>
+            <div class="year">2026</div>
+          </div>
+          <div class="event-row-img">
+            <div class="placeholder-img" style="height:100%;justify-content:center;align-items:center;display:flex;font-size:0.75rem;">
+              FOTO EVENTO
+            </div>
+          </div>
+          <div class="event-row-info">
+            <div class="event-meta">
+              <span class="badge badge-navy">Entrenamiento</span>
+            </div>
+            <h3>Test Day Nike Run Antigua</h3>
+            <p>Prueba productos, corre con la comunidad. Una experiencia especial con Nike.</p>
+            <div class="event-location">📍 Antigua Guatemala</div>
+          </div>
+          <div class="event-row-action">
+            <a href="#" class="btn btn-outline-dark">Más información</a>
+          </div>
+        </div>
+
+        <div class="event-row">
+          <div class="event-row-date">
+            <div class="day">05</div>
+            <div class="month">JUL</div>
+            <div class="year">2026</div>
+          </div>
+          <div class="event-row-img">
+            <div class="placeholder-img" style="height:100%;justify-content:center;align-items:center;display:flex;font-size:0.75rem;">
+              FOTO EVENTO
+            </div>
+          </div>
+          <div class="event-row-info">
+            <div class="event-meta">
+              <span class="badge badge-green">Trail</span>
+            </div>
+            <h3>Trail Run Volcán de Agua</h3>
+            <p>Aventura y naturaleza en su máxima expresión. Un recorrido para recordar junto a la comunidad.</p>
+            <div class="event-location">📍 Antigua Guatemala</div>
+          </div>
+          <div class="event-row-action">
+            <a href="#" class="btn btn-outline-dark">Ver detalles</a>
+          </div>
+        </div>
+
+        <div class="event-row">
+          <div class="event-row-date">
+            <div class="day">23</div>
+            <div class="month">AGO</div>
+            <div class="year">2026</div>
+          </div>
+          <div class="event-row-img">
+            <div class="placeholder-img" style="height:100%;justify-content:center;align-items:center;display:flex;font-size:0.75rem;">
+              FOTO EVENTO
+            </div>
+          </div>
+          <div class="event-row-info">
+            <div class="event-meta">
+              <span class="badge badge-navy">Carrera</span>
+            </div>
+            <h3>Medio Maratón Ciudad de Guatemala</h3>
+            <p>Lleva tu rendimiento al siguiente nivel. Preparémonos juntos para nuevos retos.</p>
+            <div class="event-location">📍 Ciudad de Guatemala</div>
+          </div>
+          <div class="event-row-action">
+            <a href="#" class="btn btn-outline-dark">Más información</a>
+          </div>
+        </div>
+
+      </div><!-- /events-list -->
+
+      <div class="view-calendar-section">
+        <a href="#" class="btn btn-outline-dark">
+          Ver calendario completo
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="2" width="14" height="13" rx="2"/><path d="M1 6h14M5 1v2M11 1v2"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SPONSOR CTA -->
+  <section class="sponsor-cta-section">
+    <div class="container">
+      <div class="section-label" style="justify-content:center;color:rgba(232,112,26,0.85);">Marcas</div>
+      <h2>¿Quieres que tu marca sea parte?</h2>
+      <p>Conoce nuestras opciones de patrocinio.</p>
+      <a href="sponsors.html" class="btn btn-primary">Patrocinar Altura</a>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+</body>
+</html>

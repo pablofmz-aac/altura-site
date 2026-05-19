@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miembros Fundadores — Altura Athletics</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* Page header */
+    .page-header {
+      background: linear-gradient(135deg, #080f1a 0%, var(--navy-mid) 100%);
+      padding: calc(var(--nav-height) + 60px) 0 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 80px solid rgba(26,115,232,0.06);
+      pointer-events: none;
+    }
+    .page-header-inner { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
+    .page-header h1 { color: var(--white); }
+    .page-header h1 span { color: var(--orange); display: block; }
+    .page-header p { color: rgba(255,255,255,0.75); max-width: 420px; margin-top: 16px; font-size: 1rem; }
+    .page-header-stats {
+      display: flex;
+      gap: 32px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 24px 32px;
+    }
+    .ph-stat { text-align: center; }
+    .ph-stat-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 900; color: var(--orange); line-height:1; }
+    .ph-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+    /* Member grid */
+    .members-section { padding: 72px 0; }
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* Join CTA */
+    .join-card {
+      background: var(--off-white);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      border: 2px dashed var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .join-card .join-icon { font-size: 2rem; }
+    .join-card h4 { color: var(--navy); }
+    .join-card p { font-size: 0.88rem; color: var(--gray-600); }
+
+    /* Footer cta */
+    .members-footer-cta {
+      text-align: center;
+      padding: 48px 0;
+      background: var(--navy);
+      color: var(--white);
+    }
+    .members-footer-cta h3 { color: var(--white); margin-bottom: 8px; }
+    .members-footer-cta p  { color: rgba(255,255,255,0.65); max-width: 400px; margin: 0 auto 24px; }
+
+    /* View all btn */
+    .members-action { text-align: center; margin-top: 40px; }
+
+    @media (max-width: 1024px) { .members-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .members-grid { grid-template-columns: 1fr; } .page-header-stats { flex-direction: column; gap: 16px; } }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <!-- HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-inner">
+        <div>
+          <img src="images/logo.jpg" alt="Altura Athletics" style="height:64px;width:auto;border-radius:8px;mix-blend-mode:screen;filter:brightness(1.1);margin-bottom:14px;">
+          <div class="section-label" style="color:rgba(232,112,26,0.85);">Comunidad Fundadora</div>
+          <h1>Nuestros <span>Miembros Fundadores</span></h1>
+          <p>Gracias a estas personas increíbles que creen en nuestra visión y están ayudando a construir Altura Athletics desde el inicio.</p>
+        </div>
+        <div class="page-header-stats">
+          <div class="ph-stat">
+            <div class="ph-stat-num">38</div>
+            <div class="ph-stat-label">Miembros Fundadores</div>
+          </div>
+          <div class="ph-stat">
+            <div class="ph-stat-num">3</div>
+            <div class="ph-stat-label">Países Representados</div>
+          </div>
+          <div class="ph-stat">
+            <div class="ph-stat-num">1</div>
+            <div class="ph-stat-label">Uno solo, conectados por el deporte</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS + GRID -->
+  <section class="members-section">
+    <div class="container">
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="filterMembers('all', this)">Todos</button>
+        <button class="filter-tab" onclick="filterMembers('legacy', this)">Legacy Member</button>
+        <button class="filter-tab" onclick="filterMembers('founding', this)">Founding Member</button>
+        <button class="filter-tab" onclick="filterMembers('community', this)">Community Builder</button>
+        <button class="filter-tab" onclick="filterMembers('supporter', this)">Supporter</button>
+      </div>
+
+      <div class="members-grid" id="membersGrid">
+
+        <!-- Member cards — replace avatar src with real photos -->
+        <div class="member-card" data-type="legacy">
+          <div class="member-avatar placeholder-img" style="width:80px;height:80px;border-radius:50%;margin:0 auto 14px;font-size:0.65rem;">FOTO</div>
+          <div class="member-name">María José B.</div>
+          <div class="member-role">Legacy Member</div>
+          <div class="member-location">📍 Antigua Guatemala</div>
+          <div class="member-since">Miembro desde abril 2024</div>
+        </div>
+
+        <div class="member-card" data-type="founding">
+          <div class="member-avatar placeholder-img" style="width:80px;height:80px;border-radius:50%;margin:0 auto 14px;font-size:0.65rem;">FOTO</div>
+          <div class="member-name">Pablo R.</div>
+          <div class="member-role">Founding Member</div>
+          <div class="member-location">📍 Antigua Guatemala</div>
+          <div class="member-since">Miembro desde abril 2024</div>
+        </div>
+
+        <div class="member-card" data-type="community">
+          <div class="member-avatar placeholder-img" style="width:80px;height:80px;border-radius:50%;margin:0 auto 14px;font-size:0.65rem;">FOTO</div>
+          <div class="member-name">Carolina M.</div>
+          <div class="member-role">Community Builder</div>
+          <div class="member-location">📍 Ciudad de Guatemala</div>
+          <div class="member-since">Miembro desde abril 2024</div>
+        </div>
+
+        <div class="member-card" data-type="founding">
+          <div class="member-avatar placeholder-img" style="width:80px;height:80px;border-radius:50%;margin:0 auto 14px;font-size:0.65rem;">FOTO</div>
+          <div class="member-name">Martín S.</div>
+          <div class="member-role">Founding Member</div>
+          <div class="member-location">📍 Antigua Guatemala</div>
+          <div class="member-since">Miembro desde abril 2024</div>
+        </div>
+
+        <div class="member-card" data-type="supporter">
+          <div class="member-avatar placeholder-img" style="width:80px;height:80px;border-radius:50%;margin:0 auto 14px;font-size:0.65rem;">FOTO</div>
+          <div class="member-name">Diego F.</div>
+          <div class="member-role">Supporter</div>
+          <div class="member-location">📍 Guatemala City</div>
+          <div class="member-since">Miembro desde abril 2024</div>
+        </div>
+
+        <div class="member-card" data-type="community">
+          <div class="member-avatar placeholder-img" style="width:80px;height:80px;border-radius:50%;margin:0 auto 14px;font-size:0.65rem;">FOTO</div>
+          <div class="member-name">Andrea L.</div>
+          <div class="member-role">Community Builder</div>
+          <div class="member-location">📍 Antigua Guatemala</div>
+          <div class="member-since">Miembro desde abril 2024</div>
+        </div>
+
+        <div class="member-card" data-type="legacy">
+          <div class="member-avatar placeholder-img" style="width:80px;height:80px;border-radius:50%;margin:0 auto 14px;font-size:0.65rem;">FOTO</div>
+          <div class="member-name">José A.</div>
+          <div class="member-role">Legacy Member</div>
+          <div class="member-location">📍 Miami, USA</div>
+          <div class="member-since">Miembro desde abril 2024</div>
+        </div>
+
+        <div class="member-card" data-type="founding">
+          <div class="member-avatar placeholder-img" style="width:80px;height:80px;border-radius:50%;margin:0 auto 14px;font-size:0.65rem;">FOTO</div>
+          <div class="member-name">Sofía & Luis</div>
+          <div class="member-role">Founding Member</div>
+          <div class="member-location">📍 Madrid y España</div>
+          <div class="member-since">Miembro desde abril 2024</div>
+        </div>
+
+        <!-- JOIN CTA CARD -->
+        <div class="join-card">
+          <div class="join-icon">🏃</div>
+          <h4>Tú puedes ser el siguiente Miembro Fundador</h4>
+          <p>Únete a la comunidad que está construyendo algo especial en Antigua.</p>
+          <a href="#" class="btn btn-primary" style="margin-top:8px;">Unirme ahora</a>
+        </div>
+
+      </div>
+
+      <div class="members-action">
+        <button class="btn btn-outline-dark">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M8 5v6M5 8h6"/></svg>
+          Ver todos los miembros
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <section class="members-footer-cta">
+    <div class="container">
+      <h3>¡Gracias por ser parte de este comienzo!</h3>
+      <p>Cada miembro fundador hace posible que Altura Athletics siga creciendo.</p>
+      <a href="comunidad.html" class="btn btn-primary">Conocer la comunidad</a>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script>
+    function filterMembers(type, btn) {
+      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.member-card').forEach(card => {
+        if (type === 'all' || card.dataset.type === type) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

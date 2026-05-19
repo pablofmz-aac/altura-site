@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Altura Athletics — Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:   #0F1E2D;
+      --green:  #1B3A2F;
+      --orange: #E8701A;
+      --orange2:#FF8C3A;
+      --white:  #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      font-family: 'Barlow', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body {
+      background: linear-gradient(160deg, #060e1a 0%, #0C1A2E 35%, #112340 70%, #0a1628 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background decoration */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      border: 100px solid rgba(26,100,232,0.07);
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -150px; left: -150px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 80px solid rgba(17,35,64,0.5);
+      pointer-events: none;
+    }
+
+    /* Card container */
+    .links-card {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .links-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .links-logo {
+      width: 80px; height: 80px;
+      background: rgba(232,112,26,0.12);
+      border: 2px solid rgba(232,112,26,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 2rem;
+    }
+    .links-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+    }
+    .links-brand span { color: var(--orange); }
+    .links-tagline {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* Avatar */
+    .links-avatar {
+      width: 130px; height: 130px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.98);
+      border: 3px solid rgba(232,112,26,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(12,26,46,0.45);
+    }
+
+    /* Links */
+    .links-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .link-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .link-btn:hover { transform: translateY(-2px); }
+    .link-btn:hover::before { opacity: 0.1; }
+    .link-btn:active { transform: translateY(0); }
+
+    /* Variants */
+    .link-btn.primary {
+      background: var(--orange);
+      color: var(--white);
+    }
+    .link-btn.primary:hover { background: var(--orange2); box-shadow: 0 6px 20px rgba(232,112,26,0.4); }
+
+    .link-btn.secondary {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--white);
+    }
+    .link-btn.secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+
+    .link-btn.green-btn {
+      background: #1E5A28;
+      border-color: rgba(255,255,255,0.1);
+      color: var(--white);
+    }
+    .link-btn.green-btn:hover { background: #2A7A35; box-shadow: 0 6px 20px rgba(42,122,53,0.4); }
+
+    .link-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .link-btn.primary .link-icon { background: rgba(255,255,255,0.2); }
+    .link-btn.green-btn .link-icon { background: rgba(255,255,255,0.15); }
+    .link-text { flex: 1; }
+    .link-text .lt { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.55); font-weight: 500; margin-bottom: 1px; }
+    .link-text .lb { display: block; font-weight: 700; font-size: 0.95rem; }
+    .link-arrow { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+
+    /* Divider */
+    .links-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 8px 0;
+      position: relative;
+    }
+
+    /* Socials */
+    .links-socials {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .social-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .social-icon:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: rgba(232,112,26,0.08);
+    }
+
+    /* Footer text */
+    .links-footer {
+      text-align: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.78rem;
+    }
+    .links-footer a { color: var(--orange); text-decoration: none; }
+
+    /* Subtle animation */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .links-header  { animation: slideUp 0.5s ease forwards; }
+    .links-list    { animation: slideUp 0.5s 0.1s ease both; }
+    .links-socials { animation: slideUp 0.5s 0.2s ease both; }
+    .links-footer  { animation: slideUp 0.5s 0.3s ease both; }
+  </style>
+</head>
+<body>
+
+  <div class="links-card">
+
+    <!-- Header -->
+    <div class="links-header">
+      <div class="links-avatar">
+        <img src="images/logo.jpg" alt="Altura Athletics" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div class="links-tagline" style="margin-top:4px;">
+        <span style="color:rgba(255,255,255,0.45);">Comunidad deportiva en Antigua Guatemala.</span>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="links-list">
+
+      <a href="eventos.html" class="link-btn primary">
+        <div class="link-icon">🗓️</div>
+        <div class="link-text">
+          <span class="lt">Próximo evento</span>
+          <span class="lb">Unirme al lanzamiento 24 mayo</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a href="miembros.html" class="link-btn primary">
+        <div class="link-icon">⭐</div>
+        <div class="link-text">
+          <span class="lt">Únete ahora</span>
+          <span class="lb">Quiero ser Miembro Fundador</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <div class="links-divider"></div>
+
+      <a href="https://wa.me/50212345678" class="link-btn green-btn">
+        <div class="link-icon">💬</div>
+        <div class="link-text">
+          <span class="lt">Comunidad</span>
+          <span class="lb">Unirme al grupo de WhatsApp</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a href="entrenamientos.html" class="link-btn secondary">
+        <div class="link-icon">🏃</div>
+        <div class="link-text">
+          <span class="lt">Programas</span>
+          <span class="lb">Ver entrenos semanales</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a href="eventos.html" class="link-btn secondary">
+        <div class="link-icon">📅</div>
+        <div class="link-text">
+          <span class="lt">Agenda</span>
+          <span class="lb">Calendario de carreras</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a href="sponsors.html" class="link-btn secondary">
+        <div class="link-icon">🤝</div>
+        <div class="link-text">
+          <span class="lt">Marcas</span>
+          <span class="lb">Patrocinar Altura</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a href="index.html" class="link-btn secondary">
+        <div class="link-icon">🏔️</div>
+        <div class="link-text">
+          <span class="lt">Sitio web</span>
+          <span class="lb">Conocer más sobre Altura</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+    </div>
+
+    <!-- Socials -->
+    <div class="links-socials">
+      <a href="#" class="social-icon" aria-label="Instagram">IG</a>
+      <a href="#" class="social-icon" aria-label="Facebook">FB</a>
+      <a href="#" class="social-icon" aria-label="Altura">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1L15 14H1L8 1Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="https://wa.me/50212345678" class="social-icon" aria-label="WhatsApp">WA</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="links-footer">
+      Gracias por ser parte. ♡<br>
+      <a href="index.html">alturaathletics.com</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

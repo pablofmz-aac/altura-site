@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrenamientos — Altura Athletics</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .page-header-simple {
+      background: linear-gradient(135deg, #080f1a 0%, var(--navy-mid) 100%);
+      padding: calc(var(--nav-height) + 48px) 0 56px;
+    }
+    .page-header-simple h1 { color: var(--white); }
+    .page-header-simple p  { color: rgba(255,255,255,0.65); margin-top: 10px; max-width: 480px; }
+
+    /* Programs */
+    .programs-section { padding: 80px 0; }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .program-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+      background: var(--white);
+    }
+    .program-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+    .program-img {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+    .program-img .placeholder-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+    .program-img .program-level-badge {
+      position: absolute;
+      top: 16px; left: 16px;
+    }
+    .program-body { padding: 28px; }
+    .program-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin: 10px 0 8px;
+    }
+    .program-desc { color: var(--gray-600); font-size: 0.92rem; }
+    .program-features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--gray-100);
+    }
+    .program-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-body);
+    }
+    .program-feature::before {
+      content: '✓';
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(232,112,26,0.12);
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Bottom CTA */
+    .training-cta {
+      background: var(--orange);
+      padding: 72px 0;
+      text-align: center;
+    }
+    .training-cta h2 { color: var(--white); }
+    .training-cta p  { color: rgba(255,255,255,0.85); max-width: 440px; margin: 12px auto 28px; }
+
+    @media (max-width: 768px) { .programs-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <section class="page-header-simple">
+    <div class="container">
+      <div class="section-label" style="color:var(--orange);">Planes</div>
+      <h1>Programas de Entrenamiento</h1>
+      <p>Planes diseñados para cada nivel y objetivo.</p>
+    </div>
+  </section>
+
+  <section class="programs-section">
+    <div class="container">
+      <div class="programs-grid">
+
+        <div class="program-card">
+          <div class="program-img">
+            <div class="placeholder-img" style="height:100%;justify-content:center;align-items:center;display:flex;">
+              <!-- <img src="images/prog-principiante.jpg" alt="Principiante"> -->
+              FOTO PROGRAMA
+            </div>
+            <div class="program-level-badge">
+              <span class="badge badge-orange">Nivel 1</span>
+            </div>
+          </div>
+          <div class="program-body">
+            <div class="program-name">Principiante</div>
+            <div class="program-desc">Empieza tu camino con base sólida. Ideal para quienes se inician en el running.</div>
+            <div class="program-features">
+              <div class="program-feature">Planes estructurados semana a semana</div>
+              <div class="program-feature">Entrenadores certificados</div>
+              <div class="program-feature">Comunidad que te apoya</div>
+              <div class="program-feature">Seguimiento y progreso</div>
+            </div>
+            <a href="contacto.html" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:20px;">Empezar ahora</a>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-img">
+            <div class="placeholder-img" style="height:100%;justify-content:center;align-items:center;display:flex;">
+              FOTO PROGRAMA
+            </div>
+            <div class="program-level-badge">
+              <span class="badge badge-navy">Nivel 2</span>
+            </div>
+          </div>
+          <div class="program-body">
+            <div class="program-name">5K – 10K</div>
+            <div class="program-desc">Mejora tu velocidad y aumenta tu resistencia. Para quienes ya corren y quieren mejorar sus tiempos.</div>
+            <div class="program-features">
+              <div class="program-feature">Planes estructurados semana a semana</div>
+              <div class="program-feature">Entrenadores certificados</div>
+              <div class="program-feature">Comunidad que te apoya</div>
+              <div class="program-feature">Seguimiento y progreso</div>
+            </div>
+            <a href="contacto.html" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:20px;">Empezar ahora</a>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-img">
+            <div class="placeholder-img" style="height:100%;justify-content:center;align-items:center;display:flex;">
+              FOTO PROGRAMA
+            </div>
+            <div class="program-level-badge">
+              <span class="badge badge-green">Nivel 3</span>
+            </div>
+          </div>
+          <div class="program-body">
+            <div class="program-name">10K – 21K</div>
+            <div class="program-desc">Lleva tu rendimiento al siguiente nivel. Para runners con experiencia que apuntan al medio maratón.</div>
+            <div class="program-features">
+              <div class="program-feature">Planes estructurados semana a semana</div>
+              <div class="program-feature">Entrenadores certificados</div>
+              <div class="program-feature">Comunidad que te apoya</div>
+              <div class="program-feature">Seguimiento y progreso</div>
+            </div>
+            <a href="contacto.html" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:20px;">Empezar ahora</a>
+          </div>
+        </div>
+
+        <div class="program-card">
+          <div class="program-img">
+            <div class="placeholder-img" style="height:100%;justify-content:center;align-items:center;display:flex;">
+              FOTO PROGRAMA
+            </div>
+            <div class="program-level-badge">
+              <span class="badge badge-orange">Nivel 4</span>
+            </div>
+          </div>
+          <div class="program-body">
+            <div class="program-name">Trail & Ultra</div>
+            <div class="program-desc">Desafía tus límites en la montaña. Para los que buscan la aventura extrema en terrenos naturales.</div>
+            <div class="program-features">
+              <div class="program-feature">Planes estructurados semana a semana</div>
+              <div class="program-feature">Entrenadores certificados</div>
+              <div class="program-feature">Comunidad que te apoya</div>
+              <div class="program-feature">Seguimiento y progreso</div>
+            </div>
+            <a href="contacto.html" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:20px;">Empezar ahora</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="training-cta">
+    <div class="container">
+      <h2>¿Listo para comenzar tu plan?</h2>
+      <p>Escríbenos y te ayudamos a elegir el ideal para ti.</p>
+      <a href="https://wa.me/50212345678" class="btn" style="background:var(--white);color:var(--orange);font-weight:700;">
+        Hablar por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="js/components.js"></script>
+</body>
+</html>
