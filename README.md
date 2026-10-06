@@ -1,2 +1,0 @@
-# altura-site
-AAC Site
